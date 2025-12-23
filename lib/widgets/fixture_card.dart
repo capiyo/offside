@@ -4,7 +4,7 @@ import '../models/fixture_models.dart';
 class FixtureCard extends StatefulWidget {
   final Fixture fixture;
 
-  const FixtureCard({Key? key, required this.fixture}) : super(key: key);
+  const FixtureCard({super.key, required this.fixture});
 
   @override
   State<FixtureCard> createState() => _FixtureCardState();
@@ -19,7 +19,7 @@ class _FixtureCardState extends State<FixtureCard> {
   final List<String> _comments = [
     "Home team looks strong!",
     "Draw is likely today",
-    "Good odds for away win"
+    "Good odds for away win",
   ];
 
   @override
@@ -87,7 +87,7 @@ class _FixtureCardState extends State<FixtureCard> {
                     ],
                   ),
                 ),
-                
+
                 Column(
                   children: [
                     Container(
@@ -133,7 +133,7 @@ class _FixtureCardState extends State<FixtureCard> {
                     ),
                   ],
                 ),
-                
+
                 Expanded(
                   child: Column(
                     children: [
@@ -176,9 +176,9 @@ class _FixtureCardState extends State<FixtureCard> {
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             // League and Status
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -211,12 +211,12 @@ class _FixtureCardState extends State<FixtureCard> {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: widget.fixture.isLive 
+                    color: widget.fixture.isLive
                         ? const Color(0xFFDC2626).withOpacity(0.2)
                         : const Color(0xFF059669).withOpacity(0.2),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: widget.fixture.isLive 
+                      color: widget.fixture.isLive
                           ? const Color(0xFFEF4444)
                           : const Color(0xFF10B981),
                     ),
@@ -234,11 +234,13 @@ class _FixtureCardState extends State<FixtureCard> {
                           ),
                         ),
                       Text(
-                        widget.fixture.isLive ? 'LIVE' : widget.fixture.status.toUpperCase(),
+                        widget.fixture.isLive
+                            ? 'LIVE'
+                            : widget.fixture.status.toUpperCase(),
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.bold,
-                          color: widget.fixture.isLive 
+                          color: widget.fixture.isLive
                               ? const Color(0xFFEF4444)
                               : const Color(0xFF10B981),
                         ),
@@ -248,9 +250,9 @@ class _FixtureCardState extends State<FixtureCard> {
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 20),
-            
+
             // Odds Section
             Container(
               padding: const EdgeInsets.all(16),
@@ -274,17 +276,29 @@ class _FixtureCardState extends State<FixtureCard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildOddsCard('1', 'Home', widget.fixture.homeWin.toStringAsFixed(2)),
-                      _buildOddsCard('X', 'Draw', widget.fixture.draw.toStringAsFixed(2)),
-                      _buildOddsCard('2', 'Away', widget.fixture.awayWin.toStringAsFixed(2)),
+                      _buildOddsCard(
+                        '1',
+                        'Home',
+                        widget.fixture.homeWin.toStringAsFixed(2),
+                      ),
+                      _buildOddsCard(
+                        'X',
+                        'Draw',
+                        widget.fixture.draw.toStringAsFixed(2),
+                      ),
+                      _buildOddsCard(
+                        '2',
+                        'Away',
+                        widget.fixture.awayWin.toStringAsFixed(2),
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
-            
+
             const SizedBox(height: 20),
-            
+
             // Action Buttons Row
             Container(
               padding: const EdgeInsets.symmetric(vertical: 12),
@@ -309,7 +323,7 @@ class _FixtureCardState extends State<FixtureCard> {
                       children: [
                         Icon(
                           isLiked ? Icons.favorite : Icons.favorite_border,
-                          color: isLiked 
+                          color: isLiked
                               ? const Color(0xFFEF4444)
                               : const Color(0xFF9CA3AF),
                           size: 20,
@@ -319,7 +333,7 @@ class _FixtureCardState extends State<FixtureCard> {
                           '$likeCount',
                           style: TextStyle(
                             fontSize: 14,
-                            color: isLiked 
+                            color: isLiked
                                 ? const Color(0xFFEF4444)
                                 : const Color(0xFF9CA3AF),
                             fontWeight: FontWeight.w500,
@@ -328,7 +342,7 @@ class _FixtureCardState extends State<FixtureCard> {
                       ],
                     ),
                   ),
-                  
+
                   // Comments Button
                   GestureDetector(
                     onTap: () {
@@ -340,7 +354,7 @@ class _FixtureCardState extends State<FixtureCard> {
                       children: [
                         Icon(
                           Icons.messenger_outline,
-                          color: showComments 
+                          color: showComments
                               ? const Color(0xFF3B82F6)
                               : const Color(0xFF9CA3AF),
                           size: 20,
@@ -350,7 +364,7 @@ class _FixtureCardState extends State<FixtureCard> {
                           '$commentCount',
                           style: TextStyle(
                             fontSize: 14,
-                            color: showComments 
+                            color: showComments
                                 ? const Color(0xFF3B82F6)
                                 : const Color(0xFF9CA3AF),
                             fontWeight: FontWeight.w500,
@@ -359,7 +373,7 @@ class _FixtureCardState extends State<FixtureCard> {
                       ],
                     ),
                   ),
-                  
+
                   // Share Button
                   GestureDetector(
                     onTap: () {
@@ -388,7 +402,7 @@ class _FixtureCardState extends State<FixtureCard> {
                 ],
               ),
             ),
-            
+
             // Comments Section
             if (showComments) ...[
               const SizedBox(height: 16),
@@ -401,79 +415,81 @@ class _FixtureCardState extends State<FixtureCard> {
                 ),
               ),
               const SizedBox(height: 12),
-              
+
               // Comments List
-              ..._comments.map((comment) => Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF1F2937),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: const Color(0xFF374151),
-                        radius: 16,
-                        child: Text(
-                          'U',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey[300],
+              ..._comments.map(
+                (comment) => Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1F2937),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: const Color(0xFF374151),
+                          radius: 16,
+                          child: Text(
+                            'U',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey[300],
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Username',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFFD1D5DB),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Username',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFFD1D5DB),
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              comment,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
+                              const SizedBox(height: 4),
+                              Text(
+                                comment,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              '2 hours ago',
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: Colors.grey[500],
+                              const SizedBox(height: 8),
+                              Text(
+                                '2 hours ago',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Colors.grey[500],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.more_vert,
-                          color: Colors.grey[500],
-                          size: 18,
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.more_vert,
+                            color: Colors.grey[500],
+                            size: 18,
+                          ),
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
                         ),
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              )).toList(),
-              
+              ),
+
               const SizedBox(height: 16),
-              
+
               // Add Comment Input
               Container(
                 padding: const EdgeInsets.all(12),
@@ -543,7 +559,7 @@ class _FixtureCardState extends State<FixtureCard> {
       ),
     );
   }
-  
+
   Widget _buildOddsCard(String symbol, String label, String odds) {
     return Column(
       children: [
@@ -577,10 +593,7 @@ class _FixtureCardState extends State<FixtureCard> {
         ),
         const SizedBox(height: 6),
         Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
               colors: [Color(0xFF059669), Color(0xFF10B981)],
@@ -601,7 +614,7 @@ class _FixtureCardState extends State<FixtureCard> {
       ],
     );
   }
-  
+
   String _getInitials(String teamName) {
     if (teamName.isEmpty) return '??';
     final words = teamName.split(' ');
@@ -610,13 +623,14 @@ class _FixtureCardState extends State<FixtureCard> {
     }
     return teamName.substring(0, teamName.length < 2 ? 1 : 2).toUpperCase();
   }
-  
+
   void _shareFixture() {
     // Implement share functionality
-    final shareText = 'Check out ${widget.fixture.homeTeam} vs ${widget.fixture.awayTeam}';
+    final shareText =
+        'Check out ${widget.fixture.homeTeam} vs ${widget.fixture.awayTeam}';
     // You can use packages like share_plus for actual sharing
   }
-  
+
   @override
   void dispose() {
     _commentController.dispose();

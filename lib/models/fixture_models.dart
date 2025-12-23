@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Fixture {
   final String? id;
   final String matchId;

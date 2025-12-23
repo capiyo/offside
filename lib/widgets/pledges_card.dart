@@ -4,7 +4,7 @@ import '../models/pledge_model.dart';
 class PledgeCard extends StatelessWidget {
   final PledgeModel pledge;
 
-  const PledgeCard({Key? key, required this.pledge}) : super(key: key);
+  const PledgeCard({super.key, required this.pledge});
 
   @override
   Widget build(BuildContext context) {
@@ -76,18 +76,11 @@ class PledgeCard extends StatelessWidget {
             const SizedBox(height: 12),
             Row(
               children: const [
-                Icon(
-                  Icons.favorite,
-                  size: 14,
-                  color: Color(0xFF10B981),
-                ),
+                Icon(Icons.favorite, size: 14, color: Color(0xFF10B981)),
                 SizedBox(width: 4),
                 Text(
                   'Thank you for your support!',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Color(0xFF10B981),
-                  ),
+                  style: TextStyle(fontSize: 12, color: Color(0xFF10B981)),
                 ),
               ],
             ),

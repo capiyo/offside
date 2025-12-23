@@ -34,17 +34,53 @@ class Post {
   });
 
   factory Post.fromJson(Map<String, dynamic> json) {
+    // Helper to parse ISO 8601 string or Unix timestamp to int
+
+    int parseTimestamp(dynamic value) {
+      if (value == null) return 0;
+
+      // If it's already an integer (Unix timestamp)
+      if (value is int) return value;
+
+      // If it's a string
+      if (value is String) {
+        try {
+          // Try to parse as ISO 8601 string (e.g., "2024-01-15T10:30:00Z")
+          final date = DateTime.tryParse(value);
+          if (date != null) {
+            // Convert to Unix timestamp (seconds since epoch)
+            return date.millisecondsSinceEpoch ~/ 1000;
+          }
+
+          // Try to parse as Unix timestamp string
+          return int.tryParse(value) ?? 0;
+        } catch (e) {
+          return 0;
+        }
+      }
+
+      String parseImageUrl(dynamic value) {
+        if (value == null) return '';
+        if (value is String) {
+          return value.trim().isEmpty || value == 'null' ? '' : value;
+        }
+        return '';
+      }
+
+      return 0;
+    }
+
     return Post(
-      id: json['id'] ?? '',
-      imageUrl: json['image_url'] ?? '',
-      caption: json['caption'],
-      userName: json['user_name'] ?? '',
-      userId: json['user_id'] ?? '',
-      createdAt: json['created_at'] ?? 0,
-      updatedAt: json['updated_at'],
+      id: json['id']?.toString() ?? '',
+      imageUrl: json['image_url']?.toString() ?? '',
+      caption: json['caption']?.toString(),
+      userName: json['user_name']?.toString() ?? '',
+      userId: json['user_id']?.toString() ?? '',
+      createdAt: parseTimestamp(json['created_at']),
+      updatedAt: parseTimestamp(json['updated_at']),
       betAmount: (json['bet_amount'] ?? 0).toDouble(),
-      betOutcome: json['bet_outcome'],
-      odds: json['odds'] ?? '1.00',
+      betOutcome: json['bet_outcome']?.toString(),
+      odds: json['odds']?.toString() ?? '1.00',
     );
   }
 
@@ -105,11 +141,7 @@ class ApiResponse {
   final List<Post> posts;
   final String? message;
 
-  ApiResponse({
-    required this.success,
-    required this.posts,
-    this.message,
-  });
+  ApiResponse({required this.success, required this.posts, this.message});
 
   factory ApiResponse.fromJson(Map<String, dynamic> json) {
     return ApiResponse(

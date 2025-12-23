@@ -12,11 +12,11 @@ class MatchCard extends StatefulWidget {
   final Function(UserData) onUserDataUpdate;
 
   const MatchCard({
-    Key? key,
+    super.key,
     required this.fixture,
     required this.userData,
     required this.onUserDataUpdate,
-  }) : super(key: key);
+  });
 
   @override
   State<MatchCard> createState() => _MatchCardState();
@@ -94,7 +94,8 @@ class _MatchCardState extends State<MatchCard> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-              'Insufficient balance. You need Ksh $betAmount but have Ksh ${widget.userData!.balance}'),
+            'Insufficient balance. You need Ksh $betAmount but have Ksh ${widget.userData!.balance}',
+          ),
           backgroundColor: Colors.red,
         ),
       );
@@ -143,7 +144,9 @@ class _MatchCardState extends State<MatchCard> {
       final newBalance = widget.userData!.balance - betAmount;
 
       final updateResponse = await http.post(
-        Uri.parse('https://fanclash-api.onrender.com/api/profile/update-balance'),
+        Uri.parse(
+          'https://fanclash-api.onrender.com/api/profile/update-balance',
+        ),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'user_id': widget.userData!.userId,
@@ -173,8 +176,8 @@ class _MatchCardState extends State<MatchCard> {
           final selectedTeam = selectedBet == 'homeTeam'
               ? widget.fixture.homeTeam
               : selectedBet == 'awayTeam'
-                  ? widget.fixture.awayTeam
-                  : 'Draw';
+              ? widget.fixture.awayTeam
+              : 'Draw';
 
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -231,7 +234,10 @@ class _MatchCardState extends State<MatchCard> {
               Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: const Color(0xFF10B981).withOpacity(0.1),
                       borderRadius: BorderRadius.circular(12),
@@ -253,7 +259,10 @@ class _MatchCardState extends State<MatchCard> {
                   if (isLive) ...[
                     const SizedBox(width: 6),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.red.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(12),
@@ -404,7 +413,11 @@ class _MatchCardState extends State<MatchCard> {
           Row(
             children: [
               Expanded(
-                child: _buildOddsButton('1', widget.fixture.homeWin, 'homeTeam'),
+                child: _buildOddsButton(
+                  '1',
+                  widget.fixture.homeWin,
+                  'homeTeam',
+                ),
               ),
               const SizedBox(width: 4),
               Expanded(
@@ -412,7 +425,11 @@ class _MatchCardState extends State<MatchCard> {
               ),
               const SizedBox(width: 4),
               Expanded(
-                child: _buildOddsButton('2', widget.fixture.awayWin, 'awayTeam'),
+                child: _buildOddsButton(
+                  '2',
+                  widget.fixture.awayWin,
+                  'awayTeam',
+                ),
               ),
             ],
           ),
@@ -440,7 +457,10 @@ class _MatchCardState extends State<MatchCard> {
                   borderRadius: BorderRadius.circular(8),
                   borderSide: const BorderSide(color: Color(0xFF10B981)),
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 12,
+                ),
                 isDense: true,
               ),
               style: const TextStyle(fontSize: 12),
@@ -507,7 +527,8 @@ class _MatchCardState extends State<MatchCard> {
                       'Left: Ksh ${(widget.userData!.balance - (double.tryParse(betAmountController.text) ?? 0)).toStringAsFixed(0)}',
                       style: TextStyle(
                         fontSize: 10,
-                        color: (double.tryParse(betAmountController.text) ?? 0) >
+                        color:
+                            (double.tryParse(betAmountController.text) ?? 0) >
                                 widget.userData!.balance
                             ? Colors.red
                             : const Color(0xFF10B981),
@@ -549,23 +570,33 @@ class _MatchCardState extends State<MatchCard> {
                 ),
                 const SizedBox(width: 4),
                 IconButton(
-                  icon: Icon(Icons.chat_bubble_outline,
-                      size: 16, color: Colors.grey.shade400),
+                  icon: Icon(
+                    Icons.chat_bubble_outline,
+                    size: 16,
+                    color: Colors.grey.shade400,
+                  ),
                   onPressed: () {},
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),
                 ),
                 const SizedBox(width: 4),
                 IconButton(
-                  icon: Icon(Icons.share, size: 16, color: Colors.grey.shade400),
+                  icon: Icon(
+                    Icons.share,
+                    size: 16,
+                    color: Colors.grey.shade400,
+                  ),
                   onPressed: () {},
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),
                 ),
                 const Spacer(),
                 IconButton(
-                  icon: Icon(Icons.bookmark_border,
-                      size: 16, color: Colors.grey.shade400),
+                  icon: Icon(
+                    Icons.bookmark_border,
+                    size: 16,
+                    color: Colors.grey.shade400,
+                  ),
                   onPressed: () {},
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),
@@ -590,9 +621,7 @@ class _MatchCardState extends State<MatchCard> {
               : Colors.grey.shade900.withOpacity(0.3),
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color: isSelected
-                ? const Color(0xFF10B981)
-                : Colors.grey.shade700,
+            color: isSelected ? const Color(0xFF10B981) : Colors.grey.shade700,
           ),
         ),
         child: Column(

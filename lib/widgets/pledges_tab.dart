@@ -3,7 +3,7 @@ import '../models/pledge_model.dart';
 import 'pledges_card.dart';
 
 class PledgesTab extends StatelessWidget {
-  const PledgesTab({Key? key}) : super(key: key);
+  const PledgesTab({super.key});
 
   @override
   Widget build(BuildContext context) {

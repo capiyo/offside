@@ -6,7 +6,7 @@ void main() {
 }
 
 class OffsideApp extends StatelessWidget {
-  const OffsideApp({Key? key}) : super(key: key);
+  const OffsideApp({super.key});
 
   @override
   Widget build(BuildContext context) {

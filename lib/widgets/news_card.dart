@@ -4,7 +4,7 @@ import '../models/news_model.dart';
 class NewsCard extends StatelessWidget {
   final NewsModel news;
 
-  const NewsCard({Key? key, required this.news}) : super(key: key);
+  const NewsCard({super.key, required this.news});
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +33,7 @@ class NewsCard extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  news.image,
-                  style: const TextStyle(fontSize: 40),
-                ),
+                Text(news.image, style: const TextStyle(fontSize: 40)),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(

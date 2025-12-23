@@ -10,14 +10,14 @@ class PostCard extends StatefulWidget {
   final int index;
 
   const PostCard({
-    Key? key,
+    super.key,
     required this.post,
     required this.onLike,
     required this.onSave,
     required this.onComment,
     required this.onShare,
     required this.index,
-  }) : super(key: key);
+  });
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -117,9 +117,9 @@ class _PostCardState extends State<PostCard> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-          Colors.grey.shade900.withOpacity(0.3),
+            Colors.grey.shade900.withOpacity(0.3),
             Colors.black.withOpacity(0.3),
-        ],
+          ],
         ),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
@@ -174,15 +174,19 @@ class _PostCardState extends State<PostCard> {
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
-                                  getOutcomeBgColor(post.betOutcome ?? 'pending'),
-                                  getOutcomeBgColor(post.betOutcome ?? 'pending')
-                                      .withOpacity(0.5),
+                                  getOutcomeBgColor(
+                                    post.betOutcome ?? 'pending',
+                                  ),
+                                  getOutcomeBgColor(
+                                    post.betOutcome ?? 'pending',
+                                  ).withOpacity(0.5),
                                 ],
                               ),
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: getOutcomeColor(post.betOutcome ?? 'pending')
-                                    .withOpacity(0.4),
+                                color: getOutcomeColor(
+                                  post.betOutcome ?? 'pending',
+                                ).withOpacity(0.4),
                               ),
                             ),
                             child: Row(
@@ -191,7 +195,9 @@ class _PostCardState extends State<PostCard> {
                                 Icon(
                                   getOutcomeIcon(post.betOutcome ?? 'pending'),
                                   size: 12,
-                                  color: getOutcomeColor(post.betOutcome ?? 'pending'),
+                                  color: getOutcomeColor(
+                                    post.betOutcome ?? 'pending',
+                                  ),
                                 ),
                                 const SizedBox(width: 4),
                                 Text(
@@ -199,7 +205,9 @@ class _PostCardState extends State<PostCard> {
                                   style: TextStyle(
                                     fontSize: 10,
                                     fontWeight: FontWeight.w600,
-                                    color: getOutcomeColor(post.betOutcome ?? 'pending'),
+                                    color: getOutcomeColor(
+                                      post.betOutcome ?? 'pending',
+                                    ),
                                   ),
                                 ),
                               ],
@@ -342,7 +350,7 @@ class _PostCardState extends State<PostCard> {
                           color: const Color(0xFF10B981),
                           value: loadingProgress.expectedTotalBytes != null
                               ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
+                                    loadingProgress.expectedTotalBytes!
                               : null,
                         ),
                       ),
@@ -376,9 +384,13 @@ class _PostCardState extends State<PostCard> {
                       IconButton(
                         onPressed: () => widget.onLike(post),
                         icon: Icon(
-                          post.isLiked == true ? Icons.favorite : Icons.favorite_border,
+                          post.isLiked == true
+                              ? Icons.favorite
+                              : Icons.favorite_border,
                           size: 20,
-                          color: post.isLiked == true ? Colors.red : Colors.grey.shade400,
+                          color: post.isLiked == true
+                              ? Colors.red
+                              : Colors.grey.shade400,
                         ),
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
@@ -475,9 +487,7 @@ class _PostCardState extends State<PostCard> {
                     decoration: BoxDecoration(
                       color: Colors.grey.shade900.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: Colors.grey.shade800,
-                      ),
+                      border: Border.all(color: Colors.grey.shade800),
                     ),
                     child: Row(
                       children: [
@@ -521,11 +531,7 @@ class _PostCardState extends State<PostCard> {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              icon,
-              size: 12,
-              color: color,
-            ),
+            Icon(icon, size: 12, color: color),
             const SizedBox(width: 4),
             Text(
               label,

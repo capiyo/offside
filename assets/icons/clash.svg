@@ -1,0 +1,81 @@
+<svg width="1024" height="1024" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with glow effect -->
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#10b981" />
+      <stop offset="100%" stopColor="#059669" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+      <feMerge>
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Main circle -->
+  <circle cx="32" cy="32" r="30" fill="#111827" stroke="#10b981" strokeWidth="2" />
+  
+  <!-- Left figure (fan) - aggressive stance -->
+  <g filter="url(#glow)">
+    <path
+      d="M18 44 L18 28 L22 24 L26 28 L26 36 L30 32"
+      stroke="#10b981"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+    <!-- Head -->
+    <circle cx="22" cy="20" r="4" fill="#10b981" />
+    <!-- Arm raised -->
+    <path
+      d="M22 28 L16 24"
+      stroke="#10b981"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+  </g>
+  
+  <!-- Right figure (fan) - aggressive stance mirrored -->
+  <g filter="url(#glow)">
+    <path
+      d="M46 44 L46 28 L42 24 L38 28 L38 36 L34 32"
+      stroke="#10b981"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+    <!-- Head -->
+    <circle cx="42" cy="20" r="4" fill="#10b981" />
+    <!-- Arm raised -->
+    <path
+      d="M42 28 L48 24"
+      stroke="#10b981"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+  </g>
+  
+  <!-- Clash lightning bolt in center -->
+  <path
+    d="M32 18 L28 30 L33 30 L30 42 L38 28 L33 28 L36 18 Z"
+    fill="url(#logoGradient)"
+    filter="url(#glow)"
+  />
+  
+  <!-- VS text at bottom -->
+  <text
+    x="32"
+    y="54"
+    textAnchor="middle"
+    fill="#10b981"
+    fontSize="8"
+    fontWeight="bold"
+    fontFamily="Arial"
+  >
+    VS
+  </text>
+</svg>

@@ -1,6 +1,6 @@
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:offside/main.dart';
+import 'package:clash/main.dart';
 
 void main() {
   testWidgets('App starts and shows title', (WidgetTester tester) async {
